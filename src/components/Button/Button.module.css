@@ -1,0 +1,31 @@
+.btn {
+  text-transform: uppercase;
+  padding: 5px 10px;
+  color: rgb(16, 15, 15);
+  border-radius: 4px;
+  border: 1px solid rgba(216, 214, 220, 0.29);
+  box-shadow: 0px 0px 15px 1px rgb(227, 214, 214);
+}
+
+.good {
+  box-shadow: 0px 0px 10px 1px rgb(85, 227, 85, 0.6);
+}
+.good:hover {
+  background: rgb(85, 227, 85, 0.4);
+}
+
+.neutral {
+  margin-left: 15px;
+  box-shadow: 0px 0px 10px 1px rgb(255, 255, 0, 0.4);
+}
+.neutral:hover {
+  background: rgba(255, 255, 0, 0.4);
+}
+
+.bad {
+  margin-left: 15px;
+  box-shadow: 0px 0px 10px 1px rgb(249, 6, 6, 0.4);
+}
+.bad:hover {
+  background: rgba(249, 6, 6, 0.4);
+}
