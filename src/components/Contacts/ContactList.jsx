@@ -1,8 +1,7 @@
 import { Button } from 'components/Button';
-import style from './Contacts.module.css';
+import style from './ContactList.module.css';
 
-export const Contacts = ({ contacts, handleBtn }) => {
-  console.log(handleBtn);
+export const ContactList = ({ contacts, handleBtn }) => {
   return (
     <ul>
       {contacts.map(({ name, number, id }) => {
