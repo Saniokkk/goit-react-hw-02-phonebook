@@ -38,20 +38,23 @@ class App extends Component {
   };
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    const { name, value } = event.target;
+    this.setState({ [name]: value }, console.log(this.contactsFilter()));
   };
 
-  contactsFilter = () => {
-    this.setState(() => {
-      this.state.contacts.map(({ name }) => {
-        // return name.toLowerCase() === this.state.filter.toLowerCase().trim();
-        const filter =
-          name.toLowerCase() == this.state.filter.toLowerCase().trim();
-        console.log(filter);
-      });
-      // console.log(this.state.contacts[0].name)
+  contactsFilter(event) {
+    const { contacts, filter } = this.state;
+
+    console.log(event);
+    console.log(filter);
+
+    contacts.filter(({ name }) => {
+      console.log(name);
+      console.log(filter);
+
+      return name.toLowerCase().includes(filter.toLowerCase().trim());
     });
-  };
+  }
 
   render() {
     return (
@@ -61,11 +64,11 @@ class App extends Component {
         </Section>
         <Section title="Contacts">
           <ContactList
-            onChange={this.contactsFilter}
+            onChange={this.handleChange}
             contacts={this.state.contacts}
             handleBtn={this.handleDeleteBtn}
-            filter={this.handleChange}
-            value={this.filter}
+            // filter={this.contactsFilter()}
+            value={this.state.filter}
           />
         </Section>
       </>
