@@ -6,7 +6,7 @@ export const Button = ({ name, handleBtn, type, className }) => {
   return (
     <button
       type={type}
-      className={classNames(style.btn, style[className])}
+      className={classNames(style.btn, className)}
       name={name}
       onClick={handleBtn}
     >
@@ -17,5 +17,7 @@ export const Button = ({ name, handleBtn, type, className }) => {
 
 Button.propTypes = {
   name: PropTypes.string,
-  handleBtn: PropTypes.func.isRequired,
+  handleBtn: PropTypes.func,
+  type: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };

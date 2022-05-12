@@ -1,29 +1,16 @@
+import PropTypes from 'prop-types';
 import { Button } from 'components/Button';
+import { InputFilter } from './InputFilter';
 import style from './ContactList.module.css';
 
-export const ContactList = ({
-  value,
-  filter,
-  contacts,
-  handleBtn,
-  onChange,
-}) => {
+export const ContactList = ({ value, handleBtn, onChange, filterContacts }) => {
   return (
     <>
-      <label htmlFor="filter">Find contacts by name</label>
-      <input
-        type="text"
-        name="filter"
-        id="filter"
-        value={value}
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        onChange={onChange}
-      />
+      <InputFilter name="filter" value={value} onChange={onChange} />
       <ul>
-        {contacts.map(({ name, number, id }) => {
+        {filterContacts.map(({ name, number, id }) => {
           return (
-            <li key={id} id={id}>
+            <li key={id} className={style.contact} id={id}>
               {name}: {number}
               <Button
                 type="button"
@@ -37,4 +24,11 @@ export const ContactList = ({
       </ul>
     </>
   );
+};
+
+ContactList.propTypes = {
+  value: PropTypes.string.isRequired,
+  handleBtn: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  filterContacts: PropTypes.array.isRequired,
 };

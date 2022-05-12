@@ -6,12 +6,7 @@ import { ContactForm } from 'components/ContactForm';
 
 class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
 
@@ -28,33 +23,30 @@ class App extends Component {
 
   changeStateAfterSubmit = (contactName, contactNumber) => {
     this.setState(prevState => {
-      return {
-        contacts: [
-          ...prevState.contacts,
-          { name: contactName, number: contactNumber, id: nanoid() },
-        ],
-      };
+      if (prevState.contacts.find(contact => contact.name === contactName)) {
+        alert(`${contactName} is already in contacts`);
+      } else {
+        return {
+          contacts: [
+            ...prevState.contacts,
+            { name: contactName, number: contactNumber, id: nanoid() },
+          ],
+        };
+      }
     });
   };
 
   handleChange = event => {
     const { name, value } = event.target;
-    this.setState({ [name]: value }, console.log(this.contactsFilter()));
+    this.setState({ [name]: value });
   };
 
-  contactsFilter(event) {
+  contactsFilter = () => {
     const { contacts, filter } = this.state;
-
-    console.log(event);
-    console.log(filter);
-
-    contacts.filter(({ name }) => {
-      console.log(name);
-      console.log(filter);
-
+    return contacts.filter(({ name }) => {
       return name.toLowerCase().includes(filter.toLowerCase().trim());
     });
-  }
+  };
 
   render() {
     return (
@@ -65,9 +57,8 @@ class App extends Component {
         <Section title="Contacts">
           <ContactList
             onChange={this.handleChange}
-            contacts={this.state.contacts}
             handleBtn={this.handleDeleteBtn}
-            // filter={this.contactsFilter()}
+            filterContacts={this.contactsFilter()}
             value={this.state.filter}
           />
         </Section>
