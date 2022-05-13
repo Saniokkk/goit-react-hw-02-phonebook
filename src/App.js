@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { Section } from 'components/Section';
 import { ContactList } from 'components/Contacts';
 import { ContactForm } from 'components/ContactForm';
-import { addToStorage, getFromStorage } from 'components/storage/storage';
+import { addToStorage, getFromStorage } from 'components/storage';
 
 class App extends Component {
   state = {
