@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { Section } from 'components/Section';
 import { ContactList } from 'components/Contacts';
 import { ContactForm } from 'components/ContactForm';
+import { addToStorage, getFromStorage } from 'components/storage/storage';
 
 class App extends Component {
   state = {
@@ -20,6 +21,14 @@ class App extends Component {
       return { contacts: [...newState] };
     });
   };
+
+  componentDidMount() {
+    this.setState({ contacts: getFromStorage('contacts') });
+  }
+
+  componentDidUpdate() {
+    addToStorage('contacts', this.state.contacts);
+  }
 
   changeStateAfterSubmit = (contactName, contactNumber) => {
     this.setState(prevState => {

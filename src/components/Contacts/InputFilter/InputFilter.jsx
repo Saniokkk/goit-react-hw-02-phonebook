@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import style from './InputFilter';
 
 export const InputFilter = props => {
   const { name, value, onChange } = props;
